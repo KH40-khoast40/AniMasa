@@ -1,0 +1,13 @@
+
+float3 Base_Color = float3(58,58,58);
+
+//////////////////////////////////////////////////////////////
+
+float3 Shade_Color = float3(29,29,29);
+
+#define Shade_Scale 1.2
+#define Shade_Scale_Y 1
+
+//////////////////////////////////////////////////////////////
+
+#include "AniMasa.fxsub"

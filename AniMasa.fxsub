@@ -1,0 +1,195 @@
+////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//  "Ani:Masa" shader (https://github.com/KH40-khoast40/AniMasa)
+//
+//  Base shader: 舞力介入P
+//  Shader editing: KH40
+//  Inspiration: Animasa (あにまさ)
+//
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+float4x4 WorldViewProjMatrix      : WORLDVIEWPROJECTION;
+float4x4 WorldMatrix              : WORLD;
+float4x4 ViewMatrix               : VIEW;
+
+float4   EdgeColor         : EDGECOLOR;
+float4   GroundShadowColor : GROUNDSHADOWCOLOR;
+
+float3   LightAmbient      : AMBIENT   < string Object = "Light"; >;
+
+
+texture2D ShadeMap 
+	<
+		string ResourceName = "shading.png";
+		int MipLevels = 0;
+	>;
+sampler ShadeSamp = sampler_state {
+    texture = <ShadeMap>;
+    MINFILTER = ANISOTROPIC;
+	MAGFILTER = ANISOTROPIC;
+	MIPFILTER = ANISOTROPIC;
+	ADDRESSU  = CLAMP;
+	ADDRESSV  = CLAMP;
+};
+
+texture2D HighlightMap
+	<
+		string ResourceName = "shading.png";
+		int MipLevels = 0;
+		int Width = 16;
+		int Height = 16;
+	>;
+sampler HighlightSamp = sampler_state {
+    texture = <HighlightMap>;
+    MINFILTER = ANISOTROPIC;
+	MAGFILTER = ANISOTROPIC;
+	MIPFILTER = ANISOTROPIC;
+	ADDRESSU  = CLAMP;
+	ADDRESSV  = CLAMP;
+};
+
+texture2D TextureMap : MATERIALTEXTURE;
+sampler TextureSamp = sampler_state {
+	texture = <TextureMap>;
+	MINFILTER = ANISOTROPIC;
+	MAGFILTER = ANISOTROPIC;
+	MIPFILTER = ANISOTROPIC;
+	ADDRESSU  = CLAMP;
+	ADDRESSV  = CLAMP;
+};
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+float4 ColorRender_VS(float4 Pos : POSITION) : POSITION 
+{
+    return mul( Pos, WorldViewProjMatrix );
+}
+
+
+float4 ColorRender_PS() : COLOR
+{
+    return EdgeColor;
+}
+
+
+technique EdgeTec < string MMDPass = "edge"; > {
+    pass DrawEdge {
+        VertexShader = compile vs_2_0 ColorRender_VS();
+        PixelShader  = compile ps_2_0 ColorRender_PS();
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+float4 Shadow_VS(float4 Pos : POSITION) : POSITION
+{
+    return mul( Pos, WorldViewProjMatrix );
+}
+
+
+float4 Shadow_PS() : COLOR
+{
+    return GroundShadowColor;
+}
+
+
+technique ShadowTec < string MMDPass = "shadow"; > {
+    pass DrawShadow {
+        VertexShader = compile vs_2_0 Shadow_VS();
+        PixelShader  = compile ps_2_0 Shadow_PS();
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+struct VS_OUTPUT {
+    float4 Pos        : POSITION;    // 射影変換座標
+    float3 Normal     : TEXCOORD1;   // 法線
+    float2 SpTex      : TEXCOORD2;	 // スフィアマップテクスチャ座標
+	float2 Tex		  : TEXCOORD3;
+};
+
+
+VS_OUTPUT AniMasa_VS(float4 Pos : POSITION, float3 Normal : NORMAL, float2 Tex : TEXCOORD0)
+{
+    VS_OUTPUT Out = (VS_OUTPUT)0;
+    
+    Out.Pos = mul( Pos, WorldViewProjMatrix );
+    
+    Out.Normal = normalize( mul( Normal, (float3x3)WorldMatrix ) );
+	
+	Out.Normal = Out.Normal;
+	
+	float2 NormalWV = mul( Out.Normal, (float3x3)ViewMatrix );
+	Out.SpTex.x = NormalWV.x * 0.5f + 0.5f;
+	Out.SpTex.y = NormalWV.y * -0.5f + 0.5f;
+	
+	Out.Tex = Tex;
+    
+    return Out;
+}
+
+
+float4 AniMasa_PS(VS_OUTPUT IN, uniform bool useTexture) : COLOR0
+{	
+	float4 Color = 1;
+	Color.rgb = Shade_Color/255;
+	
+	float2 ShadeTex;
+	ShadeTex.x = (IN.SpTex.x-0.5)* Shade_Scale + 0.5;
+	ShadeTex.y = (IN.SpTex.y-0.5)* Shade_Scale * Shade_Scale_Y + 0.5;
+	
+	float Shade_Draw = tex2D(ShadeSamp,ShadeTex).r;
+	Color.rgb = lerp(Color.rgb,Base_Color/255,Shade_Draw);
+	
+	#ifdef Highlight
+	
+		float2 HighlightTex;
+		HighlightTex.x = (IN.SpTex.x-0.5)* Highlight_Scale + 0.5;
+		HighlightTex.y = (IN.SpTex.y-0.5)* Highlight_Scale * Highlight_Scale_Y + 0.5;
+		float Highlight_Draw = tex2D(HighlightSamp,HighlightTex).r;
+		Color.rgb = lerp(Color.rgb,Highlight_Color/255,Highlight_Draw);
+		
+	#endif
+	
+	if ( useTexture ) 
+	{
+        Color *= tex2D(TextureSamp, IN.Tex);
+    }
+	
+	Color.rgb *= LightAmbient+0.4;
+	
+    return Color;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+technique MainTec0 < string MMDPass = "object"; bool UseTexture = true; > {
+    pass DrawObject {
+        VertexShader = compile vs_3_0 AniMasa_VS();
+        PixelShader  = compile ps_3_0 AniMasa_PS(true);
+    }
+}
+
+technique MainTec1 < string MMDPass = "object"; bool UseTexture = false; > {
+    pass DrawObject {
+        VertexShader = compile vs_3_0 AniMasa_VS();
+        PixelShader  = compile ps_3_0 AniMasa_PS(false);
+    }
+}
+
+technique MainTec2 < string MMDPass = "object_ss"; bool UseTexture = true; > {
+    pass DrawObject {
+        VertexShader = compile vs_3_0 AniMasa_VS();
+        PixelShader  = compile ps_3_0 AniMasa_PS(true);
+    }
+}
+
+technique MainTec3 < string MMDPass = "object_ss"; bool UseTexture = false; > {
+    pass DrawObject {
+        VertexShader = compile vs_3_0 AniMasa_VS();
+        PixelShader  = compile ps_3_0 AniMasa_PS(false);
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////
