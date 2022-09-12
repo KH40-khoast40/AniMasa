@@ -1,6 +1,10 @@
 # Ani:Masa
 MMD shader that is specifically made for Animasa Miku model to recreate how it originally looked like in Animation:Master (A:M) program, before being ported to MMD
 
+# Usage
+I've made all the materials needed for standard Animasa Miku models that come with MMD. There are 2 emd files that come with the shader: **Miku_Hatsune.emd** and **Miku_Hatsune_Ver2.emd**. You just have to apply them to the Animasa Miku model that share the same name with the emd
+- The difference between the 2 emd files is just the order of the material. Since Animasa Miku ver1 and ver2 have slightly different material order, applying the emd wrong would mess up which fx goes to which material
+
 # Notices
 - The shader has no shadow casting
 - The shader shades the model based on camera angle, light direcion sliders don't affect it
