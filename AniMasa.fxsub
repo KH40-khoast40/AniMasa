@@ -20,7 +20,7 @@ float3   LightAmbient      : AMBIENT   < string Object = "Light"; >;
 
 texture2D ShadeMap 
 	<
-		string ResourceName = "shading.png";
+		string ResourceName = "../shading.png";
 		int MipLevels = 0;
 	>;
 sampler ShadeSamp = sampler_state {
@@ -34,7 +34,7 @@ sampler ShadeSamp = sampler_state {
 
 texture2D HighlightMap
 	<
-		string ResourceName = "shading.png";
+		string ResourceName = "../shading.png";
 		int MipLevels = 0;
 		int Width = 16;
 		int Height = 16;
