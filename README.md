@@ -26,7 +26,7 @@ I've made all the materials needed for standard Animasa Miku models that come wi
 
 ⚠️ **I am not responsible for any damages that are caused by the use of the shader**, please consider carefully when you use the shader.
 
-🗿 Please credit me, or mention the shader's name when you use it, thank you
+🗿 Please credit me *(KH40)*, or mention the shader's name *(Ani:Masa)* when you use it, thank you
 
 # Credits
 - Base shader: 舞力介入P
