@@ -13,7 +13,7 @@ I've made all the materials needed for the standard Animasa Miku models that com
 # Notices
 - The shader has no shadow casting
 - The shader shades the model based on camera angle, **light direcion sliders don't affect it**
-- There is no color blending in the shader (toon, spa). The base, shade, and highlight colors are 3 independent colors. Which means if you changed the base color, the shade/highlight area would not change at all *(You can even make the shaded area brighter than the base)*
+- There is no color blending in the shader (no toon, spa). The base, shade, and highlight colors are 3 independent colors. Which means if you changed the base color, the shade/highlight area would not change at all *(You can even make the shaded area brighter than the base)*
   - I chose this method so I could manually colorpick the base/shade/highlight color of each objects based on the original photo in A:M program, **to get the EXACT same colors**. If I used blending, I would have to investigate what kind of blending Animasa used, and make sure it produces accurate colors for every parts of the model, which is extra work that might not pay off
   
   <img src="https://i.imgur.com/53VOYva.png" alt="alt text">
