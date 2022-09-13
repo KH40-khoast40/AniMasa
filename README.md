@@ -1,6 +1,6 @@
 # Ani:Masa
 MMD shader that is specifically made for Animasa Miku model to imitate how it originally looked like in Animation:Master (A:M) program, before being ported to MMD
-<img src="https://i.imgur.com/nYYFcNU.png" alt="alt text">
+<img src="https://i.imgur.com/EM51pMc.png" alt="alt text">
 <img src="https://i.imgur.com/Y7icqWq.png" alt="alt text"> 
 
 # Usage
