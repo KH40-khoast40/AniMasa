@@ -1,16 +1,27 @@
 # Ani:Masa
 MMD shader that is specifically made for Animasa Miku model to recreate how it originally looked like in Animation:Master (A:M) program, before being ported to MMD
+<img src="https://i.imgur.com/nYYFcNU.png" alt="alt text">
+<img src="https://i.imgur.com/Y7icqWq.png" alt="alt text"> 
 
 # Usage
 I've made all the materials needed for standard Animasa Miku models that come with MMD. There are 2 emd files that come with the shader: **Miku_Hatsune.emd** and **Miku_Hatsune_Ver2.emd**. You just have to apply them to the Animasa Miku model that share the same name with the emd
-- The difference between the 2 emd files is just the order of the material. Since Animasa Miku ver1 and ver2 have slightly different material order, applying the emd wrong would mess up which fx goes to which material
+
+<img src="https://i.imgur.com/Teai9LI.png" alt="alt text"> 
+
+- The difference between the 2 emd files is just the order of the materials. Since Animasa Miku ver1 and ver2 have slightly different material order, applying the emd wrong would mess up which fx goes to which material
 
 # Notices
 - The shader has no shadow casting
-- The shader shades the model based on camera angle, light direcion sliders don't affect it
+- The shader shades the model based on camera angle, **light direcion sliders don't affect it**
 - There is no color blending in the shader. The base, shade, and highlight colors are 3 independent colors. Which means if you changed the base color, the shade/highlight area would not change at all *(You can even make the shaded area brighter than the base)*
   - I chose this method so I could manually colorpick the base/shade/highlight color of each objects based on the original photo in A:M program, **to get the EXACT same colors**. If I used blending, I would have to investigate what kind of blending Animasa used, and make sure it produces accurate colors for every parts of the model, which is extra work that might not pay off
+  
+  <img src="https://i.imgur.com/53VOYva.png" alt="alt text">
+  
  - Due to how the shader works, the current preset *(set of fx files)* is only compatible with the Animasa Miku model. If you want to use it with other Animasa characters (Rin,Len,Kaito,...), you will have to change the color values in the fx files. It's best that you find a photo of that character in the A:M program (not easy, I know), and colorpick each parts, to be as accurate as possible
+ 
+   <img src="https://i.imgur.com/iGc1vEs.jpg" alt="alt text"> 
+ 
     - It'd be nice if you make other presets of the shader for it to fit with other Animasa characters. If you want, you can contact me to include that preset to be an offical version of the shader, to expand the shader to not just Miku-only
   
 # Rules
