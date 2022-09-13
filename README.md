@@ -1,10 +1,10 @@
 # Ani:Masa
-MMD shader that is specifically made for Animasa Miku model to imitate how it originally looked like in Animation:Master (A:M) program, before being ported to MMD
+MMD shader that is specifically made for Animasa Miku model to imitate how it originally looked like in Animation:Master (A:M), before being ported to MMD
 <img src="https://i.imgur.com/EM51pMc.png" alt="alt text">
 <img src="https://i.imgur.com/Y7icqWq.png" alt="alt text"> 
 
 # Usage
-I've made all the materials needed for the standard Animasa Miku models that come with MMD. There are 2 emd files that come with the shader: **Miku_Hatsune.emd** and **Miku_Hatsune_Ver2.emd**. You just have to apply the emd to the Animasa Miku model that share the same name with it
+I've made all the materials needed for the standard Animasa Miku models that come with MMD. There are 2 emd files that come with the shader: **Miku_Hatsune.emd** and **Miku_Hatsune_Ver2.emd**. You just have to apply the emd to the Animasa Miku model that shares the same name with it
 
 <img src="https://i.imgur.com/Teai9LI.png" alt="alt text"> 
 
