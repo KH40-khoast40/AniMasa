@@ -1,5 +1,5 @@
 # Ani:Masa
-MMD shader that is specifically made for Animasa Miku model to recreate how it originally looked like in Animation:Master (A:M) program, before being ported to MMD
+MMD shader that is specifically made for Animasa Miku model to imitate how it originally looked like in Animation:Master (A:M) program, before being ported to MMD
 <img src="https://i.imgur.com/nYYFcNU.png" alt="alt text">
 <img src="https://i.imgur.com/Y7icqWq.png" alt="alt text"> 
 
@@ -22,7 +22,7 @@ I've made all the materials needed for standard Animasa Miku models that come wi
  
    <img src="https://i.imgur.com/iGc1vEs.jpg" alt="alt text"> 
  
-    - It'd be nice if you make other presets of the shader for it to fit with other Animasa characters. If you want, you can contact me to include that preset to be an offical version of the shader, to expand the shader to not just Miku-only
+    - It'd be nice if you make other presets of the shader for it to fit with other Animasa characters. If you want, you can contact me to include that preset to be an offical version of the shader, to expand the shader to not just be Miku-only
   
 # Rules
 ✔️ Modification is allowed, you can customize the shader, or add new features to it all you want.
