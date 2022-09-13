@@ -18,7 +18,7 @@ I've made all the materials needed for the standard Animasa Miku models that com
   
   <img src="https://i.imgur.com/53VOYva.png" alt="alt text">
   
- - Due to how the shader works *(manually choose colors for each object)*, the current preset *(set of fx files)* is only compatible with the Animasa Miku model. If you want to use it with other Animasa characters (Rin,Len,Kaito,...), you will have to change the color values in the fx files. It's best that you dig up a photo of that character in the A:M program (not easy, I know), and colorpick each parts, to be as accurate as possible
+ - Due to how the shader works *(colors are manually chosen for each object)*, the current preset *(set of fx files)* is only compatible with the Animasa Miku model. If you want to use it with other Animasa characters (Rin,Len,Kaito,...), you will have to change the color values in the fx files. It's best that you dig up a photo of that character in the A:M program (not easy, I know), and colorpick each parts, to be as accurate as possible
  
    <img src="https://i.imgur.com/iGc1vEs.jpg" alt="alt text"> 
  
